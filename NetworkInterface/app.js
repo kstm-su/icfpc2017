@@ -6,7 +6,9 @@ var exec = require('child_process').exec;
 var client = new net.Socket();
 
 var child;
-var path = '"C:\\Users\\Makinami\\Documents\\Visual\ Studio\ 2017\\Projects\\Lambdas\\Debug\\Lambdas.exe"';
+
+var port = process.argv[2];
+var path = process.argv[3];
 
 var buffer = '';
 var remains = 0;
@@ -16,7 +18,7 @@ function sendInput(input) {
     child.stdin.write(input);
 }
 
-client.connect(9001, 'punter.inf.ed.ac.uk', function () {
+client.connect(port, 'punter.inf.ed.ac.uk', function () {
     console.log('Connected');
 
     child = exec(path);
